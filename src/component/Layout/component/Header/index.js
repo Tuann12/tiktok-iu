@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faCircleQuestion,
     faCircleXmark,
-    faCloudUpload,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
     faKeyboard,
+    faPlus,
     faSignOut,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +24,8 @@ import styles from './Header.module.scss';
 import images from '~/acsset/images';
 import AccountItem from '~/component/AccountItem';
 import Menu from '~/component/Popper/Menu';
+import { InboxIcon, MessageIcon, CreateEffects } from '~/component/Icons';
+import Images from '~/component/Images';
 
 const cx = classNames.bind(styles);
 
@@ -77,6 +79,8 @@ function Header() {
             default:
         }
     };
+
+    const [numberInbox, setNumberInbox] = useState(1);
 
     const userMenu = [
         {
@@ -139,9 +143,28 @@ function Header() {
                 <div className={cx('actions')}>
                     {currentUser ? (
                         <>
-                            <Tippy content="Upload video" placement="bottom" delay={[0, 200]}>
+                            <Button
+                                className={cx('upload-btn')}
+                                rounded
+                                leftIcon={<FontAwesomeIcon icon={faPlus} />}
+                                onClick={onclick}
+                            >
+                                Upload
+                            </Button>
+                            <Tippy content="Create effects" placement="bottom">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <CreateEffects className={cx('icon-btn')} />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Message" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <MessageIcon className={cx('icon-btn')} />
+                                </button>
+                            </Tippy>
+                            <Tippy content="Inbox" placement="bottom">
+                                <button className={cx('action-btn')}>
+                                    <InboxIcon className={cx('icon-btn')} />
+                                    <span className={cx('inbox-red')}>{numberInbox}</span>
                                 </button>
                             </Tippy>
                         </>
@@ -153,7 +176,7 @@ function Header() {
                     )}
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Images
                                 className={cx('user-avatar')}
                                 src="https://scontent.fsgn4-1.fna.fbcdn.net/v/t39.30808-6/273544622_3047488055568466_7278172477705962968_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=0sHW2rbAijIAX_mG6-v&_nc_ht=scontent.fsgn4-1.fna&oh=00_AfA_AUlaf-QXGZEZemGBuMxLxoDnibGaTSfRdiXhLMsX0Q&oe=63E07709"
                                 alt="Nguyen Thanh Tuan"
