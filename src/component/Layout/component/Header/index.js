@@ -14,8 +14,10 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import 'tippy.js/dist/tippy.css';
 import Tippy from '@tippyjs/react';
+import { Link } from 'react-router-dom';
 import Button from '~/component/Button';
 import styles from './Header.module.scss';
+import configRoutes from '~/config/routes';
 import images from '~/acsset/images';
 import Menu from '~/component/Popper/Menu';
 import { InboxIcon, MessageIcon, CreateEffects } from '~/component/Icons';
@@ -67,8 +69,6 @@ function Header() {
         }
     };
 
-    const [numberInbox, setNumberInbox] = useState(12);
-
     const userMenu = [
         {
             icon: <FontAwesomeIcon icon={faUser} />,
@@ -97,7 +97,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <img src={images.logo} alt="Tiktok" />
+                <Link to={configRoutes.home} className={cx('logo-tiktok')}>
+                    <img src={images.logo} alt="Tiktok" />
+                </Link>
 
                 <Search />
 
@@ -125,7 +127,7 @@ function Header() {
                             <Tippy content="Inbox" placement="bottom">
                                 <button className={cx('action-btn')}>
                                     <InboxIcon className={cx('icon-btn')} />
-                                    <span className={cx('inbox-red')}>{numberInbox}</span>
+                                    <span className={cx('inbox-red')}>12</span>
                                 </button>
                             </Tippy>
                         </>
