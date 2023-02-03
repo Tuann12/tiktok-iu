@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -17,7 +16,7 @@ import Tippy from '@tippyjs/react';
 import { Link } from 'react-router-dom';
 import Button from '~/component/Button';
 import styles from './Header.module.scss';
-import configRoutes from '~/config/routes';
+import config from '~/config';
 import images from '~/acsset/images';
 import Menu from '~/component/Popper/Menu';
 import { InboxIcon, MessageIcon, CreateEffects } from '~/component/Icons';
@@ -97,7 +96,7 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <Link to={configRoutes.home} className={cx('logo-tiktok')}>
+                <Link to={config.routes.home} className={cx('logo-tiktok')}>
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 

@@ -8,7 +8,7 @@ import AccountItem from '~/component/AccountItem';
 import classNames from 'classnames/bind';
 import style from './Search.module.scss';
 import useDebounce from '~/hooks/useDebounce';
-import * as searchServices from '~/apiServices/searchServices';
+import * as searchService from '~/services/searchService';
 
 const cx = classNames.bind(style);
 
@@ -33,7 +33,7 @@ function Search() {
             setLoading(true);
 
             try {
-                const result = await searchServices.search(debounce);
+                const result = await searchService.search(debounce);
 
                 setSearchResult(result);
                 setLoading(false);

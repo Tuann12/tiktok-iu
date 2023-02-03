@@ -1,4 +1,4 @@
-import Header from '~/component/Layout/component/Header';
+import Header from '~/layouts/component/Header';
 
 function HeaderOnly({ children }) {
     return (
