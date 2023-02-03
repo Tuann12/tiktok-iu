@@ -3,25 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames/bind';
 import styles from './AccountItem.module.scss';
 import Images from '~/component/Images';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data }) {
     return (
-        <div className={cx('wrapper')}>
-            <Images
-                className={cx('avatar')}
-                src="https://www.invert.vn/media/uploads/uploads/2022/12/03194208-8-anh-gai-xinh-goi-cam.jpeg"
-                alt="Hoaa"
-            />
+        <Link to={`/@/${data.nickname}`} className={cx('wrapper')}>
+            <Images className={cx('avatar')} src={data.avatar} alt={data.full_name} />
             <div className={cx('info')}>
                 <h4 className={cx('name')}>
-                    <span>Nguyen Van A</span>
-                    <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />
+                    <span>{data.full_name}</span>
+                    {data.tick && <FontAwesomeIcon className={cx('check')} icon={faCheckCircle} />}
                 </h4>
-                <span className={cx('username')}>Nguyenvana</span>
+                <span className={cx('username')}>{data.nickname}</span>
             </div>
-        </div>
+        </Link>
     );
 }
 
