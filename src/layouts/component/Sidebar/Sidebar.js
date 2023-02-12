@@ -13,7 +13,6 @@ import {
 } from '~/component/Icons';
 import SuggestedAccounts from '~/component/SuggestedAccounts';
 import * as userService from '~/services/userService';
-import * as userFollowService from '~/services/userFollowService';
 
 const cx = classNames.bind(styles);
 
@@ -21,7 +20,6 @@ const PER_PAGE = 5;
 
 function Sidebar() {
     const [suggestedUsers, setSuggestedUsers] = useState([]);
-    // const [follower, setFollower] = useState([]);
 
     useEffect(() => {
         userService
@@ -31,15 +29,6 @@ function Sidebar() {
             })
             .catch((error) => console.log(error));
     }, []);
-
-    // useEffect(() => {
-    //     userFollowService
-    //         .getUserFollow({ page: 1 })
-    //         .then((data) => {
-    //             setFollower((prevUsers) => [...prevUsers, ...data]);
-    //         })
-    //         .catch((error) => console.log(error));
-    // }, []);
 
     return (
         <aside className={cx('wrapper')}>
